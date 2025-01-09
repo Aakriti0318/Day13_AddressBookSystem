@@ -1,7 +1,4 @@
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -63,5 +60,17 @@ public class Main {
         System.out.println("\nContacts Sorted by First Name:");
         addressBook.sortContacts(Comparator.comparing(Contact::getFirstName));
         addressBook.displayContacts();
+
+        System.out.println("Sorted by City:");
+        List<Contact> contacts1=new ArrayList<>();
+        addressBook.sortByCity(contacts1);
+
+        System.out.println("\nSorted by State:");
+        List<Contact> contacts2=new ArrayList<>();
+        addressBook.sortByState(contacts2);
+
+        System.out.println("\nSorted by Zip:");
+        List<Contact> contacts3=new ArrayList<>();
+        addressBook.sortByZip(contacts3);
     }
 }

@@ -96,7 +96,23 @@ class AddressBook {
     public void sortContacts(Comparator<Contact> comparator) {
         contacts.sort(comparator);
     }
+    public List<Contact> sortByCity(List<Contact> contacts) {
+        return contacts.stream()
+                .sorted(Comparator.comparing(Contact::getCity))
+                .collect(Collectors.toList());
+    }
 
+    public List<Contact> sortByState(List<Contact> contacts) {
+        return contacts.stream()
+                .sorted(Comparator.comparing(Contact::getState))
+                .collect(Collectors.toList());
+    }
+
+    public List<Contact> sortByZip(List<Contact> contacts) {
+        return contacts.stream()
+                .sorted(Comparator.comparing(Contact::getZip))
+                .collect(Collectors.toList());
+    }
     // Display all contacts
     public void displayContacts() {
         for (Contact contact : contacts) {

@@ -1,0 +1,3 @@
+Contact{firstName='Emily', lastName='Johnson', address='321 Pine St', city='Peoria', state='Illinois', zip='61615', phoneNumber='4445556666', email='emily.j@example.com'}
+Contact{firstName='Jane', lastName='Smith', address='789 Oak St', city='Chicago', state='Illinois', zip='60616', phoneNumber='1112223333', email='jane.smith@example.com'}
+Contact{firstName='John', lastName='Doe', address='123 Elm St', city='Springfield', state='IL', zip='62701', phoneNumber='1234567890', email='john.doe@example.com'}

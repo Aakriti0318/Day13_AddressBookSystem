@@ -1,13 +1,18 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 class AddressBook {
-    private List<Contact> contacts = new ArrayList<>();
+    public static List<Contact> contacts = new ArrayList<>();
 
     // UC1: Add a contact
-//    public void addContact(Contact contact) {
-//        contacts.add(contact);
-//    }
+    public void add_Contact(Contact contact) {
+        contacts.add(contact);
+    }
 
     // UC2: Edit an existing contact
     public void editContact(String firstName, String lastName, Contact updatedContact) {
@@ -96,7 +101,48 @@ class AddressBook {
     public void sortContacts(Comparator<Contact> comparator) {
         contacts.sort(comparator);
     }
+    //UC 12
+    public List<Contact> sortByCity(List<Contact> contacts) {
+        return contacts.stream()
+                .sorted(Comparator.comparing(Contact::getCity))
+                .collect(Collectors.toList());
+    }
 
+    public List<Contact> sortByState(List<Contact> contacts) {
+        return contacts.stream()
+                .sorted(Comparator.comparing(Contact::getState))
+                .collect(Collectors.toList());
+    }
+
+    public List<Contact> sortByZip(List<Contact> contacts) {
+        return contacts.stream()
+                .sorted(Comparator.comparing(Contact::getZip))
+                .collect(Collectors.toList());
+    }
+    //UC 13
+    public static void writeToFile(List<Contact> contacts, String fileName) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            for (Contact contact : contacts) {
+                writer.write(contact.toString());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<Contact> readFromFile(String fileName) {
+        List<Contact> contacts = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                contacts.add(Contact.fromString(line));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return contacts;
+    }
     // Display all contacts
     public void displayContacts() {
         for (Contact contact : contacts) {

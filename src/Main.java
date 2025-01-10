@@ -2,13 +2,13 @@ import java.util.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
+public class Main extends AddressBook {
     public static void main(String[] args) {
         AddressBook addressBook = new AddressBook();
 
         // UC1: Adding a contact
 //        Contact contact1 = new Contact("John", "Doe", "123 Main St", "Springfield", "Illinois", "62704", "1234567890", "john.doe@example.com");
-//        addressBook.addContact(contact1);
+//        addressBook.add_Contact(contact1);
 
         // UC2: Editing the contact
         Contact updatedContact = new Contact("John", "Doe", "456 Elm St", "Springfield", "Illinois", "62704", "9876543210", "john.updated@example.com");
@@ -61,16 +61,20 @@ public class Main {
         addressBook.sortContacts(Comparator.comparing(Contact::getFirstName));
         addressBook.displayContacts();
 
-        System.out.println("Sorted by City:");
-        List<Contact> contacts1=new ArrayList<>();
-        addressBook.sortByCity(contacts1);
+        System.out.println("\nSorted by City:");
+        System.out.println(addressBook.sortByCity(contacts));
 
         System.out.println("\nSorted by State:");
-        List<Contact> contacts2=new ArrayList<>();
-        addressBook.sortByState(contacts2);
+        System.out.println(addressBook.sortByState(contacts));
 
         System.out.println("\nSorted by Zip:");
-        List<Contact> contacts3=new ArrayList<>();
-        addressBook.sortByZip(contacts3);
-    }
-}
+        System.out.println(addressBook.sortByZip(contacts));
+
+    //UC 13 Write contacts to file
+    writeToFile(contacts, "address_book.txt");
+
+    // Read contacts from file
+    List<Contact> loadedContacts = readFromFile("address_book.txt");
+        System.out.println("\nLoaded Contacts from File:");
+        loadedContacts.forEach(System.out::println);
+}}

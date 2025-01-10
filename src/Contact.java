@@ -20,6 +20,11 @@ class Contact {
         this.email = email;
     }
 
+    public static Contact fromString(String data) {
+        String[] parts = data.split(",");
+        return new Contact(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6],parts[7]);
+    }
+
     // Getters and setters
     public String getFirstName() {
         return firstName;
